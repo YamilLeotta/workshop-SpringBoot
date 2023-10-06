@@ -1,19 +1,15 @@
 package grupo.artifact.controller;
 
 import org.springframework.web.bind.annotation.*;
-
 import grupo.artifact.model.User;
 import grupo.artifact.model.dto.UserDTO;
 import grupo.artifact.service.UserService;
-
 import java.util.List;
-
 import org.springframework.http.MediaType;
 
 @RestController
 @RequestMapping("user")
 public class UserController {
-
     private final UserService userService;
 
     public UserController(UserService userService){
@@ -39,5 +35,4 @@ public class UserController {
     public UserDTO updateUser(@PathVariable Integer id, @RequestBody UserDTO userDTO){
         return this.userService.updateUserWithId(id, userDTO);
     }
-
 }
