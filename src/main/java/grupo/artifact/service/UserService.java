@@ -10,7 +10,6 @@ import grupo.artifact.exception.custom.EmptyElementException;
 import grupo.artifact.exception.custom.NotCreatedException;
 import grupo.artifact.exception.custom.UnauthorizedException;
 import grupo.artifact.exception.custom.NotFoundException;
-import grupo.artifact.exception.custom.NotModifiedException;
 import grupo.artifact.model.User;
 import grupo.artifact.model.dto.UserDTO;
 import grupo.artifact.repository.UserRepository;
@@ -46,7 +45,7 @@ public class UserService {
             return this.userRepository.save(modifying).toDTO();
         }
 
-        throw new NotModifiedException("User hasn't been modified");
+        throw new NotFoundException("User not found");
     }
 
     public UserDTO loginUserWithCredentials(String username, String password){
