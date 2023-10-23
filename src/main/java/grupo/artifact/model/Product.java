@@ -30,6 +30,14 @@ public class Product {
     private Float cost;
     private Float support;
 
+/*
+    @OneToMany(
+        mappedBy = "product_service",
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL // Si hay un cambio en esta entidad, afecta al objeto orden_detail relacionado en tiempo de ejecución
+    )
+    private List<OrderDetail> orderDetails;
+*/
     public Product(ProductDTO productDTO){
         this.name = productDTO.getName();
         this.type = productDTO.getType();
