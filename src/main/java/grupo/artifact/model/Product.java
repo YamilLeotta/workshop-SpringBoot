@@ -1,5 +1,6 @@
 package grupo.artifact.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,9 +26,15 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false, unique = true)
     private String name;
+
+    @Column(nullable = false)
     private String type;
+
+    @Column(nullable = false)
     private Float cost;
+    
     private Float support;
 
 /*

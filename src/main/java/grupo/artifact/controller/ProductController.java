@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 public class ProductController {
     private final ProductService productService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService) { //Inyeccion de dependencias
         this.productService = productService;
     }
 
