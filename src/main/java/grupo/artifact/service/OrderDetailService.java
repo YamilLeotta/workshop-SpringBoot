@@ -24,10 +24,8 @@ public class OrderDetailService {
         if (checkOrderDetailDTO(orderDetailDTO)) {
             Product product = this.productRepository.findById(orderDetailDTO.getProducts_services_id()).get();
 
-            System.out.println(product.toString());
-
             OrderDetail orderDetail = new OrderDetail(
-                null, // Null
+                null,
                 product,
                 orderDetailDTO.getOrders_id(),
                 orderDetailDTO.getQuantity(),
@@ -39,8 +37,6 @@ public class OrderDetailService {
                 orderDetailDTO.getWarranty_years(),
                 (float) (orderDetailDTO.getWarranty_years() * .02 * product.getCost()) // El cost de gtia. por regla de negocio, costo de producto y años de gtia.
             );
-
-            System.out.println(orderDetail.toString() + "\n\n\n");
     
             return this.orderDetailRepository.save(orderDetail);
         }
