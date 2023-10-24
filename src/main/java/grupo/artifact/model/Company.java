@@ -1,5 +1,6 @@
 package grupo.artifact.model;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -35,7 +36,7 @@ public class Company {
     private String cuit;
 
     @Column(nullable = false)
-    private Float start_date;
+    private LocalDate start_date;
 
     @OneToMany(mappedBy = "company")
     private Set<Client> clients;

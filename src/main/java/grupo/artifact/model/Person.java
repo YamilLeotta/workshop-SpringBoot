@@ -35,7 +35,7 @@ public class Person {
     private String lastname;
 
     @Column(nullable = false)
-    private Float dni;
+    private String dni;
 
     @OneToMany(mappedBy = "person")
     private Set<Client> clients;
