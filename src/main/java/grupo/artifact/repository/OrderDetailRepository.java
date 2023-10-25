@@ -9,5 +9,5 @@ import grupo.artifact.model.OrderDetail;
 
 @Repository
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Integer> {
-    List<OrderDetail> findByOrders(Integer id);
+    List<OrderDetail> findByOrder(Integer id);
 }

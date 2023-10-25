@@ -22,7 +22,7 @@ public class ProductController {
     }
     
     @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductDTO> getAllProducts() {
+    public List<Product> getAllProducts() {
         return this.productService.getListProductsInBD();
     }
 

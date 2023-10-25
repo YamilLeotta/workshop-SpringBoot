@@ -1,14 +1,20 @@
 package grupo.artifact.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import grupo.artifact.model.dto.ProductDTO;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,9 +22,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "products_services")
-@Getter
-@Setter
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
@@ -37,14 +41,13 @@ public class Product {
     
     private Float support;
 
-/*
     @OneToMany(
         mappedBy = "product_service",
-        fetch = FetchType.LAZY,
+        fetch = FetchType.EAGER,
         cascade = CascadeType.ALL // Si hay un cambio en esta entidad, afecta al objeto orden_detail relacionado en tiempo de ejecución
     )
     private List<OrderDetail> orderDetails;
-*/
+
     public Product(ProductDTO productDTO){
         this.name = productDTO.getName();
         this.type = productDTO.getType();

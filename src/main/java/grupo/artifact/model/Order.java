@@ -1,12 +1,16 @@
 package grupo.artifact.model;
 
 import java.time.LocalDate;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -41,4 +45,11 @@ public class Order {
     public void prePersist() {
         creation_date = LocalDate.now();
     }
+
+    @OneToMany(
+        mappedBy = "order",
+        cascade = CascadeType.ALL,
+        fetch = FetchType.LAZY
+    )
+    private Set<OrderDetail> orderDetails;
 }
