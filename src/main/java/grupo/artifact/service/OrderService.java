@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
 import grupo.artifact.model.Order;
 import grupo.artifact.model.OrderDetail;
@@ -15,7 +13,6 @@ import grupo.artifact.repository.OrderRepository;
 import grupo.artifact.repository.ProductRepository;
 
 @Service
-@Transactional
 public class OrderService {
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
@@ -52,7 +49,7 @@ public class OrderService {
             (float) (product1.getCost() * .1), // El discount deberia obtenerse en base a porcentaje de regla de negocio y si el cliente tiene servicios contratados o en este detalle hay algun servicio.
             product1.getSupport(), // En el caso de que sea un servicio se pasa esto, si no null
             orderDetailDTOs.get(0).getWarranty_years(),
-            (orderDetailDTOs.get(0).getWarranty_years() != null) ? (float) (orderDetailDTOs.get(0).getWarranty_years() * .02 * product1.getCost()) : null // El cost de gtia. por regla de negocio, costo de producto y años de gtia.
+            (orderDetailDTOs.get(0).getWarranty_years() != null) ? (float) (orderDetailDTOs.get(0).getWarranty_years() * .02 * product1.getCost()) : 0 // El cost de gtia. por regla de negocio, costo de producto y años de gtia.
         );
         orderDetails.add(orderDetail1);
 
@@ -72,7 +69,7 @@ public class OrderService {
             (float) (product2.getCost() * .1), // El discount deberia obtenerse en base a porcentaje de regla de negocio y si el cliente tiene servicios contratados o en este detalle hay algun servicio.
             product2.getSupport(),
             orderDetailDTOs.get(1).getWarranty_years(),
-            (orderDetailDTOs.get(1).getWarranty_years() != null) ? (float) (orderDetailDTOs.get(1).getWarranty_years() * .02 * product2.getCost()) : null // El cost de gtia. por regla de negocio, costo de producto y años de gtia.
+            (orderDetailDTOs.get(1).getWarranty_years() != null) ? (float) (orderDetailDTOs.get(1).getWarranty_years() * .02 * product2.getCost()) : 0 // El cost de gtia. por regla de negocio, costo de producto y años de gtia.
         );
         orderDetails.add(orderDetail2);
 
@@ -92,7 +89,7 @@ public class OrderService {
             (float) (product3.getCost() * .1), // El discount deberia obtenerse en base a porcentaje de regla de negocio y si el cliente tiene servicios contratados o en este detalle hay algun servicio.
             product3.getSupport(),
             orderDetailDTOs.get(2).getWarranty_years(),
-            (orderDetailDTOs.get(2).getWarranty_years() != null) ? (float) (orderDetailDTOs.get(2).getWarranty_years() * .02 * product3.getCost()) : null // El cost de gtia. por regla de negocio, costo de producto y años de gtia.
+            (orderDetailDTOs.get(2).getWarranty_years() != null) ? (float) (orderDetailDTOs.get(2).getWarranty_years() * .02 * product3.getCost()) : 0 // El cost de gtia. por regla de negocio, costo de producto y años de gtia.
         );
         orderDetails.add(orderDetail3);
 
