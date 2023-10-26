@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +37,7 @@ public class OrderDetail {
         optional = false // define el join, en caso de opcional false indica que deben existir el producto para que la orden sea devuelta, sería 'INNER JOIN'
     )
     @JoinColumn(name = "orders_id")
+    @JsonProperty(access = Access.WRITE_ONLY)
     private Order order;
 
     @ManyToOne(

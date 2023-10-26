@@ -12,9 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -48,6 +45,5 @@ public class Order {
     }
 
     @OneToMany(mappedBy = "order")
-    @JsonProperty(access = Access.WRITE_ONLY)
     private Set<OrderDetail> orderDetails;
 }

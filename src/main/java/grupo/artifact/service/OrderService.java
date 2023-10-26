@@ -9,6 +9,7 @@ import grupo.artifact.model.Order;
 import grupo.artifact.model.OrderDetail;
 import grupo.artifact.model.Product;
 import grupo.artifact.model.dto.OrderDetailDTO;
+import grupo.artifact.repository.OrderDetailRepository;
 import grupo.artifact.repository.OrderRepository;
 import grupo.artifact.repository.ProductRepository;
 
@@ -16,10 +17,12 @@ import grupo.artifact.repository.ProductRepository;
 public class OrderService {
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
+    private final OrderDetailRepository orderDetailRepository;
 
-    public OrderService(ProductRepository productRepository, OrderRepository orderRepository){
+    public OrderService(ProductRepository productRepository, OrderRepository orderRepository, OrderDetailRepository orderDetailRepository){
         this.productRepository = productRepository;
         this.orderRepository = orderRepository;
+        this.orderDetailRepository = orderDetailRepository;
     }
 
     public Order saveOrder(List<OrderDetailDTO> orderDetailDTOs){
@@ -87,7 +90,7 @@ public class OrderService {
         );
         orderDetails.add(orderDetail3);
 
-        order.setOrderDetails(orderDetails);
+        order.setOrderDetails((Set<OrderDetail>) new HashSet<>(orderDetailRepository.saveAllAndFlush(orderDetails)));
 
         return orderRepository.save(order);
     }
