@@ -32,12 +32,6 @@ public class OrderService {
                 .getProduct_service_id())
             .orElse(null);
 
-
-
-
-
-
-
         OrderDetail orderDetail1 = new OrderDetail(
             null,
             order,

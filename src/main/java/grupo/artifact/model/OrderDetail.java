@@ -1,5 +1,6 @@
 package grupo.artifact.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class OrderDetail {
 
     @ManyToOne(
         fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL,        
         optional = false // define el join, en caso de opcional false indica que deben existir el producto para que la orden sea devuelta, sería 'INNER JOIN'
     )
     @JoinColumn(name = "orders_id")
@@ -36,6 +38,7 @@ public class OrderDetail {
 
     @ManyToOne(
         fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL,
         optional = false // define el join, en caso de opcional false indica que deben existir el producto para que la orden sea devuelta, sería 'INNER JOIN'
     )
     @JoinColumn(name = "products_services_id") // Nombre de la FK

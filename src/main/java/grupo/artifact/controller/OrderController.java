@@ -8,8 +8,6 @@ import grupo.artifact.service.OrderService;
 
 import java.util.List;
 
-import org.hibernate.event.spi.SaveOrUpdateEventListener;
-import org.hibernate.query.criteria.internal.expression.SizeOfPluralAttributeExpression;
 import org.springframework.http.MediaType;
 
 @RestController
@@ -23,9 +21,6 @@ public class OrderController {
 
     @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Order saveOrder(@RequestBody List<OrderDetailDTO> orderDetailDTOs) {
-        Order pepe = this.orderService.saveOrder(orderDetailDTOs);
-
-        System.out.println(pepe.toString());
-        return pepe;
+        return this.orderService.saveOrder(orderDetailDTOs);
     }
 }
