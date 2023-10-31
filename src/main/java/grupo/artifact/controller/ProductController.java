@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 public class ProductController {
     private final ProductService productService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService) { //Inyeccion de dependencias
         this.productService = productService;
     }
 
@@ -21,9 +21,14 @@ public class ProductController {
         return this.productService.saveProduct(productDTO);
     }
     
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Product getProductById(@PathVariable Integer id) {
+        return this.productService.getProductsInBD(id);
+    }
+
     @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductDTO> getAllProducts() {
-        return this.productService.getListProductsInBD();
+    public List<Product> getProducts() {
+        return this.productService.getProductsInBD();
     }
 
     @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)

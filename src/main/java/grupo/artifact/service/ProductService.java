@@ -46,12 +46,17 @@ public class ProductService {
         throw new NotModifiedException("Product hasn't been modified");
     }
 
-    public List<ProductDTO> getListProductsInBD() {
-        return this.productRepository
-            .findAll()
+    public List<Product> getProductsInBD() {
+        return this.productRepository.findAll().stream().collect(Collectors.toList());
+/*
             .stream()
             .map(Product::toDTO)
             .collect(Collectors.toList());
+*/
+    }
+
+    public Product getProductsInBD(Integer id) {
+        return this.productRepository.findById(id).orElseThrow();
     }
 
     private Boolean checkProductDTO(ProductDTO productDTO){

@@ -1,9 +1,11 @@
 package grupo.artifact.controller;
 
 import org.springframework.web.bind.annotation.*;
+
 import grupo.artifact.model.OrderDetail;
-import grupo.artifact.model.dto.OrderDetailDTO;
 import grupo.artifact.service.OrderDetailService;
+import grupo.artifact.service.ProductService;
+
 import java.util.List;
 import org.springframework.http.MediaType;
 
@@ -12,17 +14,12 @@ import org.springframework.http.MediaType;
 public class OrderDetailController {
     private final OrderDetailService orderDetailService;
 
-    public OrderDetailController(OrderDetailService orderDetailService) {
+    public OrderDetailController(OrderDetailService orderDetailService, ProductService productService) {
         this.orderDetailService = orderDetailService;
-    }
-
-    @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public OrderDetail saveOrderDetail(@RequestBody OrderDetailDTO orderDetailDTO) {
-        return this.orderDetailService.saveOrderDetail(orderDetailDTO);
     }
     
     @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<OrderDetailDTO> getAllOrderDetail() {
+    public List<OrderDetail> getAllOrderDetail() {
         return this.orderDetailService.getAllOrderDetail();
     }
 

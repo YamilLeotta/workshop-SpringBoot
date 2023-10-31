@@ -1,10 +1,17 @@
 package grupo.artifact.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import grupo.artifact.model.dto.ProductDTO;
 import lombok.AllArgsConstructor;
@@ -25,19 +32,21 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false, unique = true)
     private String name;
+
+    @Column(nullable = false)
     private String type;
+
+    @Column(nullable = false)
     private Float cost;
+    
     private Float support;
 
-/*
-    @OneToMany(
-        mappedBy = "product_service",
-        fetch = FetchType.LAZY,
-        cascade = CascadeType.ALL // Si hay un cambio en esta entidad, afecta al objeto orden_detail relacionado en tiempo de ejecución
-    )
+    @OneToMany(mappedBy = "product_service")
+    @JsonProperty(access = Access.WRITE_ONLY)
     private List<OrderDetail> orderDetails;
-*/
+
     public Product(ProductDTO productDTO){
         this.name = productDTO.getName();
         this.type = productDTO.getType();
