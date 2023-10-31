@@ -21,9 +21,14 @@ public class ProductController {
         return this.productService.saveProduct(productDTO);
     }
     
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Product getProductById(@PathVariable Integer id) {
+        return this.productService.getProductsInBD(id);
+    }
+
     @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Product> getAllProducts() {
-        return this.productService.getListProductsInBD();
+    public List<Product> getProducts() {
+        return this.productService.getProductsInBD();
     }
 
     @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
